@@ -5,7 +5,7 @@ class CreateQuestions < ActiveRecord::Migration[8.1]
       t.string :category
       t.string :question_type, null: false
       t.boolean :active, default: true
-      
+
       t.timestamps
     end
   end

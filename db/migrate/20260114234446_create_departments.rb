@@ -3,7 +3,7 @@ class CreateDepartments < ActiveRecord::Migration[8.1]
     create_table :departments do |t|
       t.string :name, null: false
       t.string :kind
-      t.string :ancestry, index: true 
+      t.string :ancestry, index: true
 
       t.timestamps
     end
