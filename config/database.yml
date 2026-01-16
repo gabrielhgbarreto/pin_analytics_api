@@ -8,8 +8,13 @@ default: &default
 
 
 development:
-  <<: *default
-  database: app_development
+  primary:
+    <<: *default
+    database: app_development
+  queue:
+    <<: *default
+    database: app_development_queue
+    migrations_paths: db/queue_migrate
 
 test:
   <<: *default
