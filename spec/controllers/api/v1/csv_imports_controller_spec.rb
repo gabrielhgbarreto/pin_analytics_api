@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::CsvImportsController, type: :request do
   describe 'POST /api/v1/csv_imports' do
-    let(:valid_params) { { import: { csv_url: 'https://example.com/data.csv' } } }
-    let(:invalid_params) { { import: { csv_url: '' } } }
+    let(:valid_params) { { csv_url: 'https://example.com/data.csv' } }
+    let(:invalid_params) { { csv_url: '' } }
 
     context 'with valid parameters' do
       it 'enqueues the import job and returns success' do
