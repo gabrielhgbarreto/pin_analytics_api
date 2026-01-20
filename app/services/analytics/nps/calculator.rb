@@ -1,7 +1,7 @@
 module Analytics
   module Nps
     class Calculator
-      QUESTION_NAME = 'eNPS'.freeze
+      QUESTION_NAME = "eNPS".freeze
 
       attr_reader :department_id, :tenure
 

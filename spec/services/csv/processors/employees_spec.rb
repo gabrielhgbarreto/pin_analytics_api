@@ -16,7 +16,7 @@ RSpec.describe Csv::Processors::Employees do
       expect { result }.to change(Employee, :count).by(5)
 
       expect(result.size).to eq(5)
-      [1, 2, 3, 4, 5].each do |id|
+      [ 1, 2, 3, 4, 5 ].each do |id|
         expect(result["demo00#{id}@pinpeople.com.br"]).to be_a(Integer)
       end
     end

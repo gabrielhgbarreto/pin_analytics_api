@@ -2,13 +2,13 @@ module Csv
   module Processors
     class Answers < Base
       CSV_FIELDS = {
-        name:            'nome',
-        email:           'email',
-        corporate_email: 'email_corporativo',
-        gender:          'genero',
-        generation:      'geracao',
-        location:        'localidade',
-        tenure:          'tempo_de_empresa'
+        name:            "nome",
+        email:           "email",
+        corporate_email: "email_corporativo",
+        gender:          "genero",
+        generation:      "geracao",
+        location:        "localidade",
+        tenure:          "tempo_de_empresa"
       }.freeze
 
       attr_reader :saved_questions, :saved_submissions
@@ -27,7 +27,7 @@ module Csv
         bulk_upsert(
           Answer,
           records,
-          unique_keys: [:submission_id, :question_id]
+          unique_keys: [ :submission_id, :question_id ]
         )
       end
 
@@ -44,13 +44,13 @@ module Csv
       end
 
       def find_submission_id(row)
-        response_date = row['Data da Resposta']
+        response_date = row["Data da Resposta"]
         return if response_date.blank?
 
         raw_date = Date.strptime(response_date, "%d/%m/%Y")
         treated_response_date = Time.utc(raw_date.year, raw_date.month, raw_date.day)
 
-        submission_key = [row['email_corporativo'], treated_response_date]
+        submission_key = [ row["email_corporativo"], treated_response_date ]
         saved_submissions[submission_key]
       end
 

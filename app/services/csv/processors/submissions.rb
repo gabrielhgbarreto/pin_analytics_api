@@ -1,7 +1,7 @@
 module Csv
   module Processors
     class Submissions < Base
-      CSV_FIELDS = { responded_at: 'Data da Resposta', }.freeze
+      CSV_FIELDS = { responded_at: "Data da Resposta" }.freeze
 
       attr_reader :saved_employees, :submission_cache
 
@@ -18,14 +18,14 @@ module Csv
         @submission_cache = bulk_upsert(
           Submission,
           records,
-          unique_keys: [:employee_id, :responded_at],
-          returning: [:id, :employee_id, :responded_at]
+          unique_keys: [ :employee_id, :responded_at ],
+          returning: [ :id, :employee_id, :responded_at ]
         )
       end
 
       def extract_bulk
         batch.filter_map do |row|
-          employee_key = row['email_corporativo']
+          employee_key = row["email_corporativo"]
           employee_id = saved_employees[employee_key]
 
           next unless employee_id
@@ -50,7 +50,7 @@ module Csv
         submission_cache.rows.to_h do |id, employee_id, responded_at|
           corporate_email = employees_by_id[employee_id]
 
-          [ [corporate_email, responded_at], id ]
+          [ [ corporate_email, responded_at ], id ]
         end
       end
     end

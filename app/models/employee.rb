@@ -11,10 +11,10 @@ class Employee < ApplicationRecord
   }
 
   CSV_TENURE_MAPPING = {
-    'menos de 1 ano'   => 1,
-    'entre 1 e 2 anos' => 2,
-    'entre 2 e 5 anos' => 3,
-    'mais de 5 anos'   => 4
+    "menos de 1 ano"   => 1,
+    "entre 1 e 2 anos" => 2,
+    "entre 2 e 5 anos" => 3,
+    "mais de 5 anos"   => 4
   }.freeze
 
   normalizes :email, with: ->(e) { e.strip.downcase }

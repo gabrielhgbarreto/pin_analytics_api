@@ -13,8 +13,8 @@ module Csv
         @questions_cache = bulk_upsert(
           Question,
           records,
-          unique_keys: [:text],
-          returning: [:id, :text]
+          unique_keys: [ :text ],
+          returning: [ :id, :text ]
         )
       end
 

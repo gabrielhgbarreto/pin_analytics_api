@@ -14,7 +14,7 @@ module Csv
           Job,
           records,
           unique_keys: CSV_FIELDS.keys,
-          returning: [:id, :title, :function_name]
+          returning: [ :id, :title, :function_name ]
         )
       end
 
@@ -29,7 +29,7 @@ module Csv
 
       def mapped_return
         job_cache.rows.to_h do |id, title, function_name|
-          [ [title, function_name], id ]
+          [ [ title, function_name ], id ]
         end
       end
     end

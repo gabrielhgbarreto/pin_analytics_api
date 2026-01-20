@@ -18,8 +18,8 @@ RSpec.describe Csv::Processors::Submissions do
 
       expect(result.size).to eq(5)
       response_date = Time.utc(2022, 1, 20)
-      [1, 2, 3, 4, 5].each do |id|
-        expect(result[["demo00#{id}@pinpeople.com.br", response_date]]).to be_a(Integer)
+      [ 1, 2, 3, 4, 5 ].each do |id|
+        expect(result[[ "demo00#{id}@pinpeople.com.br", response_date ]]).to be_a(Integer)
       end
     end
   end

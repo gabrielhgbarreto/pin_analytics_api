@@ -1,4 +1,4 @@
-require 'net/http'
+require "net/http"
 
 module Csv
   class Downloader
@@ -16,7 +16,7 @@ module Csv
     private
 
     def tempfile
-      @tempfile ||= Tempfile.new(['import', '.csv']).binmode
+      @tempfile ||= Tempfile.new([ "import", ".csv" ]).binmode
     end
 
     def uri
@@ -24,7 +24,7 @@ module Csv
     end
 
     def stream_to_tempfile
-      Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
+      Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https") do |http|
         request = Net::HTTP::Get.new(uri)
 
         http.request(request) do |response|

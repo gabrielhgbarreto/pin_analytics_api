@@ -2,16 +2,16 @@ module Csv
   module Processors
     class Employees < Base
       CSV_FIELDS = {
-        name:            'nome',
-        email:           'email',
-        corporate_email: 'email_corporativo',
-        gender:          'genero',
-        generation:      'geracao',
-        location:        'localidade',
-        tenure:          'tempo_de_empresa'
+        name:            "nome",
+        email:           "email",
+        corporate_email: "email_corporativo",
+        gender:          "genero",
+        generation:      "geracao",
+        location:        "localidade",
+        tenure:          "tempo_de_empresa"
       }.freeze
 
-      DEPARTMENT_COLUMN = 'n4_area'.freeze
+      DEPARTMENT_COLUMN = "n4_area".freeze
 
       attr_reader :saved_jobs, :saved_departments, :employee_cache
 
@@ -29,8 +29,8 @@ module Csv
         @employee_cache = bulk_upsert(
           Employee,
           records,
-          unique_keys: [:corporate_email],
-          returning: [:id, :corporate_email]
+          unique_keys: [ :corporate_email ],
+          returning: [ :id, :corporate_email ]
         )
       end
 
@@ -47,7 +47,7 @@ module Csv
       end
 
       def extract_associations(row)
-        job_key = [row['cargo'], row['funcao']]
+        job_key = [ row["cargo"], row["funcao"] ]
         job_id = saved_jobs[job_key]
 
         department_name = row[DEPARTMENT_COLUMN]

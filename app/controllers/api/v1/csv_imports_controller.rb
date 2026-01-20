@@ -4,7 +4,7 @@ module Api
       def create
         Csv::ImportJob.perform_later(csv_url)
 
-        render json: { message: 'Importação concluída com sucesso' }, status: :ok
+        render json: { message: "Importação concluída com sucesso" }, status: :ok
       rescue StandardError => e
         render json: { error: "Falha na importação: #{e.message}" }, status: :internal_server_error
       end

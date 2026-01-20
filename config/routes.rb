@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         get :comments_conversion
       end
 
-      resources :csv_imports, only: [:create]
+      resources :csv_imports, only: [ :create ]
     end
   end
 end

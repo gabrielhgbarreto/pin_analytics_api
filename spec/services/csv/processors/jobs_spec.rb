@@ -13,8 +13,8 @@ RSpec.describe Csv::Processors::Jobs do
       expect { result }.to change(Job, :count).by(2)
 
       expect(result.size).to eq(2)
-      expect(result[["estagiário", "profissional"]]).to be_a(Integer)
-      expect(result[["analista", "profissional"]]).to be_a(Integer)
+      expect(result[[ "estagiário", "profissional" ]]).to be_a(Integer)
+      expect(result[[ "analista", "profissional" ]]).to be_a(Integer)
     end
   end
 end

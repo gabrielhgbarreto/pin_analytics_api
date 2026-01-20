@@ -2,14 +2,14 @@ module Csv
   module Processors
     class Departments < Base
       CSV_FIELDS = [
-        { kind: 'n0_empresa' },
-        { kind: 'n1_diretoria' },
-        { kind: 'n2_gerencia' },
-        { kind: 'n3_coordenacao' },
-        { kind: 'n4_area' }
+        { kind: "n0_empresa" },
+        { kind: "n1_diretoria" },
+        { kind: "n2_gerencia" },
+        { kind: "n3_coordenacao" },
+        { kind: "n4_area" }
       ].freeze
 
-      UNIQUE_KEYS = [:name, :ancestry].freeze
+      UNIQUE_KEYS = [ :name, :ancestry ].freeze
 
       attr_reader :department_cache
 
@@ -33,7 +33,7 @@ module Csv
             Department,
             mapped_bulk,
             unique_keys: UNIQUE_KEYS,
-            returning: [:id, :name, :ancestry]
+            returning: [ :id, :name, :ancestry ]
           )
 
           update_cache(result)
@@ -91,20 +91,20 @@ module Csv
         end
 
         upsert_results.each do |row|
-          parent_id = row['ancestry']&.split('/')&.last&.to_i
+          parent_id = row["ancestry"]&.split("/")&.last&.to_i
           current_path_key = nil
 
           if parent_id && parent_id > 0
             parent_path_str = parent_id_to_path_map[parent_id]
             current_path_key = "#{parent_path_str}/#{row['name']}" if parent_path_str
           else
-            current_path_key = row['name']
+            current_path_key = row["name"]
           end
 
           if current_path_key
             @department_cache[current_path_key] = {
-              id: row['id'],
-              ancestry: row['ancestry']
+              id: row["id"],
+              ancestry: row["ancestry"]
             }
           end
         end
@@ -112,8 +112,8 @@ module Csv
 
       def mapped_return
         department_cache.to_h do |path, data|
-          last_name = path.split('/').last
-          [last_name, data[:id]]
+          last_name = path.split("/").last
+          [ last_name, data[:id] ]
         end
       end
     end

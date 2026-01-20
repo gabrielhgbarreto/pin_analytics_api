@@ -18,7 +18,7 @@ module Csv
     def read_and_process
       batch = []
 
-      CSV.foreach(@file_path, headers: true, col_sep: ';') do |row|
+      CSV.foreach(@file_path, headers: true, col_sep: ";") do |row|
         batch << row.to_h
 
         if batch.size >= BATCH_SIZE

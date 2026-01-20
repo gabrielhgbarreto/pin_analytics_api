@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Csv::Processors::Base do
   subject(:processor) { described_class.new(batch) }
 
-  let(:batch) { [{ 'some' => 'data' }] }
+  let(:batch) { [ { 'some' => 'data' } ] }
 
   describe '#initialize' do
     it 'initializes with a batch' do

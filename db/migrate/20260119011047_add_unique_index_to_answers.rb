@@ -1,5 +1,5 @@
 class AddUniqueIndexToAnswers < ActiveRecord::Migration[8.1]
   def change
-    add_index :answers, [:submission_id, :question_id], unique: true
+    add_index :answers, [ :submission_id, :question_id ], unique: true
   end
 end
