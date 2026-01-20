@@ -6,11 +6,14 @@ RSpec.describe Api::V1::CsvImportsController, type: :request do
     let(:invalid_params) { { csv_url: '' } }
 
     context 'with valid parameters' do
-      it 'enqueues the import job and returns success' do
-        expect {
-          post '/api/v1/csv_imports', params: valid_params
-        }.to have_enqueued_job(Csv::ImportJob).with('https://example.com/data.csv')
+      before do
+        allow(Csv::ImportJob).to receive(:perform_later)
+      end
 
+      it 'enqueues the import job and returns success' do
+        post '/api/v1/csv_imports', params: valid_params
+
+        expect(Csv::ImportJob).to have_received(:perform_later).with('https://example.com/data.csv')
         expect(response).to have_http_status(:ok)
         expect(JSON.parse(response.body)['message']).to eq('Importação concluída com sucesso')
       end
