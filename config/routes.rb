@@ -3,6 +3,14 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      namespace :analytics do
+        get :nps
+      end
+
+      namespace :surveys do
+        get :comments_conversion
+      end
+
       resources :csv_imports, only: [:create]
     end
   end

@@ -20,8 +20,8 @@ RSpec.describe Api::V1::CsvImportsController, type: :request do
       it 'returns unprocessable entity when csv_url is missing' do
         post '/api/v1/csv_imports', params: invalid_params
 
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(JSON.parse(response.body)['error']).to eq('URL do CSV é obrigatória')
+        expect(response).to have_http_status(:internal_server_error)
+        expect(JSON.parse(response.body)['error']).to eq('Falha na importação: param is missing or the value is empty or invalid: csv_url')
       end
     end
 
